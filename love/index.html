@@ -82,11 +82,52 @@ html,body{
     display: inline-block;
     width: 1em;
 }
+.heart {
+    animation:heartbeat 1s infinite;
+    -webkit-animation:heartbeat 1s infinite;
+    display: inline-block;
+    width:10vw;
+    height:10vw;
+    background:#fff;
+    position:relative;
+    filter:drop-shadow(0px 0px 0.5vw #fff);
+    transform:rotate(45deg);
+}
+.heart:before,.heart:after {
+    content:"";
+    position:absolute;
+    width:10vw;
+    height:10vw;
+    background:#fff;
+    border-radius:5vw;
+}
+.heart:before {
+    left:-5vw;
+}
+.heart:after {
+    left:0;
+    top:-5vw;
+}
+@keyframes heartbeat {
+    0% {
+        transform:rotate(45deg) scale(0.8,0.8);
+        opacity:1;
+    }
+    25% {
+        transform:rotate(45deg) scale(1,1);
+        opacity:0.8;
+    }
+    100% {
+        transform:rotate(45deg) scale(0.8,0.8);
+        opacity:1;
+    }
+}
 @media (min-width: 900px) {
     .font{
         font-size: 8vw;
     }
     .big{
+        position: relative;
         font-size: 12vw;
     }
     .small{
@@ -98,7 +139,9 @@ html,body{
 <body>
 <div class="box">
 	<div class="center">
-        <div class="font big">❤</div>
+        <div class="font big">
+            <div class="heart"></div>
+        </div>
         <div class="font" id="time">0</div>
     </div>
     <div class="font small">by duminghong</div>
