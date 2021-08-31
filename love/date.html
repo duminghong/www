@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>纪念日</title>
+    <style>
+        #box li{
+            margin-bottom: 10px;
+        }
+        #box li span{
+            display: inline-block;
+            width: 60px;
+            text-align: right;
+            margin-right: 10px;
+        }
+        #box li em{
+            display: inline-block;
+            width: 20px;
+        }
+        .before{
+            opacity: 0.3;
+        }
+    </style>
+</head>
+<body>
+    <h1>纪念日</h1>
+    <ul id="box"></ul>
+    
+<script src="https://cdn.jsdelivr.net/npm/dayjs@1.8.16/dayjs.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+<script>
+    var loveDate = dayjs('2021-06-09 00:00:00');
+
+    var list = [
+        { type: 'day', value: 52, name: '52天' },
+        { type: 'day', value: 100, name: '100天' },
+        { type: 'festival', value: '2021-08-14', name: '七夕' },
+        { type: 'festival', value: '2021-09-21', name: '中秋' },
+        { type: 'festival', value: '2021-10-01', name: '国庆' },
+        { type: 'birthday', value: '2021-10-12', name: '生日' },
+        { type: 'festival', value: '2021-12-24', name: '平安夜' },
+    ];
+
+    var formatList = list.map(function(v){
+        if(v.type=='day'){
+            v.time = loveDate.add(v.value,'day');
+        }else{
+            v.time = dayjs(v.value);
+        }
+        var diff = v.time.diff(dayjs(), 'day');
+        v.diff = diff>0?`还有<b style="color:red">${diff}</b>天`:'';
+        return v;
+    }).sort(function(a,b){
+        return a.time.unix() - b.time.unix();
+    })
+
+    formatList.forEach(function(v){
+        $('#box').append(`<li class="${dayjs().diff(v.time)>0?'before':''}"><span>${v.name}:</span> ${v.time.format('YYYY-MM-DD')}<em></em>${v.diff} </li>`);
+    })
+
+</script>
+</body>
+</html>
