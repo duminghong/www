@@ -204,12 +204,12 @@ function animation(){
         var ms = _ms - (_ss*1000);
 
         // 格式化
-        var DD =  ('00'+_dd).slice(-2);
+        // var DD =  ('00'+_dd).slice(-2);
         var HH =  ('00'+hh).slice(-2);
         var MM =  ('00'+mm).slice(-2);
         var SS =  ('00'+ss).slice(-2);
         var MS =  ('000'+ms).slice(-3);
-        timeEle.innerHTML = '<span class="time2">'+DD+'</span>days <span class="time2">'+HH+'</span>:<span class="time2">'+MM+'</span>:<span class="time2">'+SS+'</span>.<span class="time3">'+MS+'</span>';
+        timeEle.innerHTML = '<span class="time2">'+_dd+'</span>days <span class="time2">'+HH+'</span>:<span class="time2">'+MM+'</span>:<span class="time2">'+SS+'</span>.<span class="time3">'+MS+'</span>';
         requestAnimationFrame(animation);
     }else{
         timeEle.innerHTML = '🅳 🅼';
