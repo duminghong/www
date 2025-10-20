@@ -1,222 +1,254 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="utf-8" />
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-<meta name="wap-font-scale" content="no" />
-<meta name="renderer" content="webkit" />
-<meta name="format-detection" content="telephone=no, email=no" />
-<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
-<meta name="format-detection" content="telephone=no, address=no, email=no" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black" />
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="x5-orientation" content="portrait">
-<meta name="full-screen" content="yes">
-<meta name="browsermode" content="application">
-<meta name="author" content="duminghong" />
-<title>𝘿𝙈 𝙇𝙊𝙑𝙀</title>
-<meta name="description" content="duminghong website" />
-<meta name="keywords" content="duminghong,不二很纯洁,个人网站" />
-<script>
-	var isIE = !!window.ActiveXObject || "ActiveXObject" in window;
-	if(isIE){
-		window.location.href = 'https://zhidao.baidu.com/question/367313715208425092.html';
-	}
-</script>
-<style>
-@font-face {
-  font-family: 'webfont';
-  src: url('../font/webfont.eot');
-  src:
-    url('../font/webfont.eot?#font-spider') format('embedded-opentype'),
-    url('../font/webfont.woff') format('woff'),
-    url('../font/webfont.ttf') format('truetype'),
-    url('../font/webfont.svg') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-*{
-	padding: 0;
-	margin: 0;
-}
-.flex_m{
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    align-items: center;
-}
-.flex_b{
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: flex-end;
-    -ms-flex-align: flex-end;
-    align-items: flex-end;
-}
-html,body{
-	height: 100%;
-	background-color: #e70217;
-}
-.font{
-	/* height: 11.5vw; */
-	font-family: 'webfont';
-	letter-spacing:0;
-	color: #fff;
-	font-size: 14vw;
-    white-space: nowrap;
-    text-align: center;
-}
-.big{
-    font-size: 20vw;
-}
-.small{
-    font-size: 8vw;
-}
-.logo{
-    position: absolute;
-    left: 4vw;
-    top: 4vw;
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="wap-font-scale" content="no" />
+  <meta name="renderer" content="webkit" />
+  <meta name="format-detection" content="telephone=no, email=no" />
+  <meta name="viewport"
+    content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+  <meta name="format-detection" content="telephone=no, address=no, email=no" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="x5-orientation" content="portrait">
+  <meta name="full-screen" content="yes">
+  <meta name="browsermode" content="application">
+  <meta name="author" content="duminghong" />
+  <title>𝘿𝙈 𝙇𝙊𝙑𝙀</title>
+  <meta name="description" content="duminghong website" />
+  <meta name="keywords" content="duminghong,不二很纯洁,个人网站" />
+  <script>
+    var isIE = !!window.ActiveXObject || "ActiveXObject" in window;
+    if (isIE) {
+      window.location.href = 'https://zhidao.baidu.com/question/367313715208425092.html';
+    }
+  </script>
+  <style>
+    @font-face {
+      font-family: 'webfont';
+      src: url('../font/webfont.eot');
+      src:
+        url('../font/webfont.eot?#font-spider') format('embedded-opentype'),
+        url('../font/webfont.woff') format('woff'),
+        url('../font/webfont.ttf') format('truetype'),
+        url('../font/webfont.svg') format('svg');
+      font-weight: normal;
+      font-style: normal;
+    }
 
-}
-.logo .icon{
-    width: 10vw;
-    height: 10vw;
-    margin-right: 2vw;
-}
-.bottom{
-    text-align: right;
-    position: absolute;
-    right: 4vw;
-    bottom: 4vw;
-}
-.box{
-	position: relative;
-	width: 100%;
-	height: 100%;
-}
-.center{
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -80%);
-	-webkit-transform: translate(-50%, -80%);
-}
-.time2{
-    display: inline-block;
-    width: 0.8em;
-}
-.time3{
-    display: inline-block;
-    width: 1em;
-}
-.heart {
-    animation:heartbeat 1s infinite;
-    -webkit-animation:heartbeat 1s infinite;
-    display: inline-block;
-    width:10vw;
-    height:10vw;
-    background:#fff;
-    position:relative;
-    filter:drop-shadow(0px 0px 0.5vw #fff);
-    transform:rotate(45deg);
-}
-.heart:before,.heart:after {
-    content:"";
-    position:absolute;
-    width:10vw;
-    height:10vw;
-    background:#fff;
-    border-radius:5vw;
-}
-.heart:before {
-    left:-5vw;
-}
-.heart:after {
-    left:0;
-    top:-5vw;
-}
+    * {
+      padding: 0;
+      margin: 0;
+    }
 
-@keyframes heartbeat {
-    0% {
-        transform:rotate(45deg) scale(0.8,0.8);
-        opacity:1;
+    .flex_m {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
     }
-    25% {
-        transform:rotate(45deg) scale(1,1);
-        opacity:0.8;
+
+    .flex_b {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-align: flex-end;
+      -ms-flex-align: flex-end;
+      align-items: flex-end;
     }
-    100% {
-        transform:rotate(45deg) scale(0.8,0.8);
-        opacity:1;
+
+    html,
+    body {
+      height: 100%;
+      background-color: #e70217;
     }
-}
-@media (min-width: 900px) {
-    .font{
+
+    .font {
+      /* height: 11.5vw; */
+      font-family: 'webfont';
+      letter-spacing: 0;
+      color: #fff;
+      font-size: 14vw;
+      white-space: nowrap;
+      text-align: center;
+    }
+
+    .big {
+      font-size: 20vw;
+    }
+
+    .small {
+      font-size: 8vw;
+    }
+
+    .logo {
+      position: absolute;
+      left: 4vw;
+      top: 4vw;
+
+    }
+
+    .logo .icon {
+      width: 10vw;
+      height: 10vw;
+      margin-right: 2vw;
+    }
+
+    .bottom {
+      text-align: right;
+      position: absolute;
+      right: 4vw;
+      bottom: 4vw;
+    }
+
+    .box {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+
+    .center {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -80%);
+      -webkit-transform: translate(-50%, -80%);
+    }
+
+    .time2 {
+      display: inline-block;
+      margin: 0 5px;
+      min-width: 0.65em;
+    }
+
+    .time3 {
+      display: inline-block;
+      min-width: 1em;
+    }
+
+    .heart {
+      animation: heartbeat 1s infinite;
+      -webkit-animation: heartbeat 1s infinite;
+      display: inline-block;
+      width: 10vw;
+      height: 10vw;
+      background: #fff;
+      position: relative;
+      filter: drop-shadow(0px 0px 0.5vw #fff);
+      transform: rotate(45deg);
+    }
+
+    .heart:before,
+    .heart:after {
+      content: "";
+      position: absolute;
+      width: 10vw;
+      height: 10vw;
+      background: #fff;
+      border-radius: 5vw;
+    }
+
+    .heart:before {
+      left: -5vw;
+    }
+
+    .heart:after {
+      left: 0;
+      top: -5vw;
+    }
+
+    @keyframes heartbeat {
+      0% {
+        transform: rotate(45deg) scale(0.8, 0.8);
+        opacity: 1;
+      }
+
+      25% {
+        transform: rotate(45deg) scale(1, 1);
+        opacity: 0.8;
+      }
+
+      100% {
+        transform: rotate(45deg) scale(0.8, 0.8);
+        opacity: 1;
+      }
+    }
+
+    @media (min-width: 900px) {
+      .font {
         font-size: 8vw;
-    }
-    .big{
+      }
+
+      .big {
         position: relative;
         font-size: 12vw;
-    }
-    .small{
+      }
+
+      .small {
         font-size: 4vw;
+      }
     }
-}
-</style>
+  </style>
 </head>
+
 <body>
-<div class="box">
-	<div class="center">
-        <div class="font big">
-            <a class="link" href="date.html"><div class="heart"></div></a>
-        </div>
-        <div class="font" id="time">0</div>
+  <div class="box">
+    <div class="center">
+      <div class="font big">
+        <a class="link" href="date.html">
+          <div class="heart"></div>
+        </a>
+      </div>
+      <div class="font" id="time">0</div>
     </div>
     <div class="font small bottom">by duminghong</div>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/dayjs@1.8.16/dayjs.min.js"></script>
-<script>
-window.requestAnimationFrame = (function(){
-    return window.requestAnimationFrame ||
+  </div>
+  <script src="../js/dayjs.min.js"></script>
+  <script>
+    window.requestAnimationFrame = (function () {
+      return window.requestAnimationFrame ||
         window.webkitRequestAnimationFrame ||
         window.mozRequestAnimationFrame ||
-        function( callback ){
-            window.setTimeout(callback, 1000 / 60);
+        function (callback) {
+          window.setTimeout(callback, 1000 / 60);
         };
-})();
-var timeEle = document.getElementById('time');
-var loveDate = dayjs('2021-06-09 00:00:00');
+    })();
+    var timeEle = document.getElementById('time');
+    var loveDate = dayjs('2021-06-09 00:00:00');
 
-function animation(){
-    var _ms = dayjs().diff(loveDate);
-    if(_ms>0){
-        var _dd = dayjs().diff(loveDate,'day');
-        var _hh = dayjs().diff(loveDate,'hour');
-        var _mm = dayjs().diff(loveDate,'minute');
-        var _ss = dayjs().diff(loveDate,'second');
-        
+    function animation() {
+      var _ms = dayjs().diff(loveDate);
+      if (_ms > 0) {
+        var _dd = dayjs().diff(loveDate, 'day');
+        var _hh = dayjs().diff(loveDate, 'hour');
+        var _mm = dayjs().diff(loveDate, 'minute');
+        var _ss = dayjs().diff(loveDate, 'second');
+
         // 转换
-        var hh = _hh - (_dd*24);
-        var mm = _mm - (_hh*60);
-        var ss = _ss - (_mm*60);
-        var ms = _ms - (_ss*1000);
+        var hh = _hh - (_dd * 24);
+        var mm = _mm - (_hh * 60);
+        var ss = _ss - (_mm * 60);
+        var ms = _ms - (_ss * 1000);
 
         // 格式化
         // var DD =  ('00'+_dd).slice(-2);
-        var HH =  ('00'+hh).slice(-2);
-        var MM =  ('00'+mm).slice(-2);
-        var SS =  ('00'+ss).slice(-2);
-        var MS =  ('000'+ms).slice(-3);
-        timeEle.innerHTML = '<span class="time2">'+_dd+'</span>days <span class="time2">'+HH+'</span>:<span class="time2">'+MM+'</span>:<span class="time2">'+SS+'</span>.<span class="time3">'+MS+'</span>';
+        var HH = ('00' + hh).slice(-2);
+        var MM = ('00' + mm).slice(-2);
+        var SS = ('00' + ss).slice(-2);
+        var MS = ('000' + ms).slice(-3);
+        timeEle.innerHTML = '<span class="time2">' + _dd + '</span>days <span class="time2">' + HH + '</span>:<span class="time2">' + MM + '</span>:<span class="time2">' + SS + '</span>.<span class="time3">' + MS + '</span>';
         requestAnimationFrame(animation);
-    }else{
+      } else {
         timeEle.innerHTML = '🅳 🅼';
+      }
     }
-}
-animation();
+    animation();
 
-</script>
+  </script>
 </body>
+
 </html>
