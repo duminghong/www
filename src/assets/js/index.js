@@ -1,4 +1,4 @@
-import { getOffsetPath } from "@utils/index.js";
+import { getOffsetPath } from "../../utils/index.js";
 
 // 定义动画配置常量
 const ANIMATION_CONFIG = {
