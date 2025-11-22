@@ -1,3 +1,9 @@
 {
-  "nuxt.isNuxtApp": false
+  "nuxt.isNuxtApp": false,
+  "workbench.editorAssociations": {
+    "*.svg": "default"
+  },
+  "files.associations": {
+    "*.svg": "xml"
+  }
 }

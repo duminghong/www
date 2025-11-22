@@ -1,0 +1,215 @@
+.svg-filter-box {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+#app {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  background-color: #181818;
+  overflow: hidden;
+}
+#app.active {
+  background-color: #e70217;
+}
+
+.page-cube {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100vw;
+  height: 100vh;
+}
+.page-cube.shrink {
+  transition: all 0.5s;
+}
+.page-cube-bg {
+  width: 100%;
+  height: 100%;
+  background-color: #e70217;
+  transition: all 0.15s 0.5s;
+}
+.page-cube-angle {
+  box-sizing: border-box;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  border: 0.2vw solid #fff;
+  z-index: -1;
+}
+.page-cube-angle.before {
+  left: 0;
+  top: 0;
+  /* clip-path: polygon(0 0, 70.5% 0, 30.5% 100%, 0 100%); */
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+.page-cube-angle.after {
+  right: 0;
+  bottom: 0;
+  /* clip-path: polygon(70% 0, 100% 0, 100% 100%, 30% 100%); */
+  clip-path: polygon(100% 0, 100% 100%, 0% 100%);
+}
+.page-cube.active .page-cube-bg {
+  height: 0;
+}
+.page-cube.show {
+  transition: all 0.1s;
+}
+.page-cube.show .page-cube-angle {
+  transition: border 0.2s;
+  border: 0.4vw solid #e70217;
+  background-color: transparent;
+}
+
+.page-knife {
+  position: absolute;
+  transform-origin: center center;
+  transform: rotate(90deg) translateX(-50%);
+  offset-anchor: center center;
+  offset-rotate: auto;
+  z-index: 9;
+}
+.page-knife-bg {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #e70217;
+}
+.page-knife-bg::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #ffff;
+  transition: height 0.5s 0.75s;
+}
+.page-knife.active {
+  animation: followPath 1s cubic-bezier(0.1, 0, 0.4, 1) 0.5s both;
+}
+.page-knife.active .page-knife-bg {
+  animation: lengthChange 1s ease-in-out 0.5s both;
+}
+.page-knife.active .page-knife-bg::before {
+  height: 0;
+}
+
+.svg-box {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5vw;
+  padding: 0.5vw;
+  gap: 0.5vw;
+  /* background-color: #ffffff; */
+  background-color: transparent;
+  border: 0.4vw solid transparent;
+
+  opacity: 0;
+  transition: all 0.5s;
+}
+.svg-box.show {
+  transition: opacity background-color 0.7s, border 0.5s 0.5s;
+  opacity: 1;
+  border-color: #e70217;
+  background-color: #fff;
+}
+
+.svg-box svg {
+  height: 100%;
+  width: auto;
+  fill: #e70217;
+  /* filter: url(#filter_resources_wave_image); */
+  /* filter: url(#wobble-filter); */
+}
+.svg-box .letter-d {
+}
+.svg-box .letter-u {
+}
+.svg-box .letter-m {
+}
+.svg-box .letter-i {
+  opacity: 0;
+}
+.svg-box .letter-n {
+}
+.svg-box .letter-g {
+}
+.svg-box .letter-h {
+}
+.svg-box .letter-o {
+}
+.svg-box .letter-n2 {
+}
+.svg-box .letter-g2 {
+}
+
+.page-footer {
+  position: absolute;
+  width: 100%;
+  bottom: 1.5vh;
+  text-align: center;
+  color: #fff;
+  font-size: 14px;
+}
+.page-footer a {
+  color: #fff;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.page-footer a:hover {
+  text-decoration: underline;
+}
+
+/* 如果是手机 */
+@media screen and (max-width: 768px) {
+  .svg-box {
+    height: 10vw;
+    padding: 1.2vw;
+    gap: 1.2vw;
+    border-width: 1.2vw;
+  }
+  .page-cube-angle {
+    border-width: 0.6vw;
+  }
+  .page-cube.show .page-cube-angle {
+    border-width: 1.2vw;
+  }
+}
+
+@keyframes followPath {
+  0% {
+    offset-distance: 0%;
+  }
+  100% {
+    offset-distance: 100%;
+  }
+}
+
+@keyframes lengthChange {
+  0% {
+    height: 100%;
+  }
+  15% {
+    height: 100%;
+  }
+  20% {
+    height: 500%;
+  }
+  25% {
+    height: 100%;
+  }
+  100% {
+    width: 100%;
+  }
+}

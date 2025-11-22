@@ -1,0 +1,63 @@
+/* 去掉浏览器默认样式 */
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-overflow-scrolling: touch;
+}
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0 auto;
+}
+
+input,
+textarea,
+select {
+  font-size: 100%;
+  font-family: inherit;
+  outline: none;
+  border: none;
+  background-color: transparent;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+dl,
+form {
+  display: block;
+  margin: 0;
+}
+
+h4,
+h5,
+h6 {
+  font-size: 1em;
+}
+
+ul,
+ol {
+  padding-left: 0;
+  list-style-type: none;
+}
+
+/*image with no-border*/
+img {
+  border: 0;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+.webfont {
+  font-family: "webfont";
+}

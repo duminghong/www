@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>动态水波纹边框</title>
+    <style>
+      :root {
+        --progress: 50; /* 进度: 0-100 */
+        --stroke-width: 20; /* 边框宽度 */
+        --base-frequency-x: 0.05;
+        --base-frequency-y: 0.05;
+        --num-octaves: 2;
+        --scale: 15;
+        --active-color: #ceff00;
+        --inactive-color: #333;
+        --bg-color: #1a1a1a;
+        --text-color: #ceff00;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: var(--bg-color);
+        font-family: Arial, sans-serif;
+        margin: 0;
+        flex-direction: column;
+        gap: 40px;
+      }
+
+      .progress-container {
+        width: 250px;
+        height: 250px;
+        position: relative;
+      }
+
+      .progress-ring {
+        width: 100%;
+        height: 100%;
+        transform: rotate(-90deg); /* 让起点在顶部 */
+        filter: url(#wobble-filter); /* 应用SVG滤镜 */
+      }
+
+      .progress-ring__circle {
+        fill: none;
+        stroke-width: var(--stroke-width);
+        transition: stroke-dashoffset 0.35s;
+      }
+
+      .progress-ring__background {
+        stroke: var(--inactive-color);
+      }
+
+      .progress-ring__progress {
+        stroke: var(--active-color);
+        stroke-linecap: round; /* 圆角端点 */
+      }
+
+      .progress-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: var(--text-color);
+        font-size: 50px;
+        font-weight: bold;
+      }
+
+      .controls {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        background: #2c2c2c;
+        padding: 20px;
+        border-radius: 8px;
+        color: white;
+        width: 300px;
+      }
+
+      .control-group {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      .control-group label {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      input[type="range"] {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="progress-container">
+      <svg class="progress-ring" viewBox="0 0 120 120">
+        <!-- 背景圆环 -->
+        <circle
+          class="progress-ring__circle progress-ring__background"
+          r="50"
+          cx="60"
+          cy="60"
+        ></circle>
+        <!-- 进度圆环 -->
+        <circle
+          class="progress-ring__circle progress-ring__progress"
+          r="50"
+          cx="60"
+          cy="60"
+        ></circle>
+      </svg>
+      <div class="progress-text">50%</div>
+    </div>
+
+    <!-- SVG 滤镜定义 -->
+    <svg width="0" height="0">
+      <filter id="wobble-filter">
+        <!-- 
+                feTurbulence: 创建湍流噪声
+                - baseFrequency: 噪声的基础频率，值越小，波纹越大越平缓
+                - numOctaves: 噪声的倍频数，值越大，细节越多越锐利
+                - type: 'fractalNoise' 或 'turbulence'
+            -->
+        <feTurbulence
+          id="turbulence"
+          type="fractalNoise"
+          baseFrequency="0.05 0.05"
+          numOctaves="2"
+          result="turbulenceResult"
+        >
+          <!-- 动画：让 turbulence 的基础频率动起来，模拟流动效果 -->
+          <animate
+            attributeName="baseFrequency"
+            dur="10s"
+            values="0.05 0.05;0.08 0.02;0.05 0.05;"
+          ></animate>
+        </feTurbulence>
+
+        <!-- 
+                feDisplacementMap: 用一个图像（这里是上面的噪声）来置换另一个图像
+                - in: 输入源，这里是 SourceGraphic，即我们的圆环
+                - in2: 置换图源，这里是上面生成的噪声
+                - scale: 置换的缩放因子，即波纹的幅度/强度
+                - xChannelSelector / yChannelSelector: 指定使用噪声的哪个颜色通道进行置换
+            -->
+        <feDisplacementMap
+          in="SourceGraphic"
+          in2="turbulenceResult"
+          scale="15"
+          xChannelSelector="R"
+          yChannelSelector="G"
+        ></feDisplacementMap>
+      </filter>
+    </svg>
+
+    <div class="controls">
+      <div class="control-group">
+        <label for="progress">进度: <span id="progress-value">50%</span></label>
+        <input type="range" id="progress" min="0" max="100" value="50" />
+      </div>
+      <div class="control-group">
+        <label for="stroke-width"
+          >边框宽度: <span id="stroke-width-value">20</span></label
+        >
+        <input
+          type="range"
+          id="stroke-width"
+          min="1"
+          max="50"
+          value="20"
+          step="1"
+        />
+      </div>
+      <div class="control-group">
+        <label for="scale"
+          >波纹幅度 (scale): <span id="scale-value">15</span></label
+        >
+        <input
+          type="range"
+          id="scale"
+          min="0"
+          max="15000"
+          value="15"
+          step="1"
+        />
+      </div>
+      <div class="control-group">
+        <label for="frequency"
+          >波纹频率 (baseFrequency):
+          <span id="frequency-value">0.05</span></label
+        >
+        <input
+          type="range"
+          id="frequency"
+          min="0.01"
+          max="0.2"
+          value="0.05"
+          step="0.01"
+        />
+      </div>
+      <div class="control-group">
+        <label for="octaves"
+          >波纹细节 (numOctaves): <span id="octaves-value">2</span></label
+        >
+        <input type="range" id="octaves" min="1" max="10" value="2" step="1" />
+      </div>
+    </div>
+
+    <script>
+      const root = document.documentElement;
+      const progressCircle = document.querySelector(".progress-ring__progress");
+      const progressText = document.querySelector(".progress-text");
+      const radius = progressCircle.r.baseVal.value;
+      const circumference = 2 * Math.PI * radius;
+
+      progressCircle.style.strokeDasharray = `${circumference} ${circumference}`;
+
+      function setProgress(percent) {
+        const offset = circumference - (percent / 100) * circumference;
+        progressCircle.style.strokeDashoffset = offset;
+        progressText.textContent = `${Math.round(percent)}%`;
+        root.style.setProperty("--progress", percent);
+      }
+
+      // --- 控制器逻辑 ---
+      const progressSlider = document.getElementById("progress");
+      const strokeWidthSlider = document.getElementById("stroke-width");
+      const scaleSlider = document.getElementById("scale");
+      const frequencySlider = document.getElementById("frequency");
+      const octavesSlider = document.getElementById("octaves");
+
+      const progressValue = document.getElementById("progress-value");
+      const strokeWidthValue = document.getElementById("stroke-width-value");
+      const scaleValue = document.getElementById("scale-value");
+      const frequencyValue = document.getElementById("frequency-value");
+      const octavesValue = document.getElementById("octaves-value");
+
+      const turbulence = document.getElementById("turbulence");
+      const displacementMap = document.querySelector("feDisplacementMap");
+
+      progressSlider.addEventListener("input", (e) => {
+        const value = e.target.value;
+        setProgress(value);
+        progressValue.textContent = `${value}%`;
+      });
+
+      strokeWidthSlider.addEventListener("input", (e) => {
+        const value = e.target.value;
+        root.style.setProperty("--stroke-width", value);
+        strokeWidthValue.textContent = value;
+      });
+
+      scaleSlider.addEventListener("input", (e) => {
+        const value = e.target.value;
+        displacementMap.setAttribute("scale", value);
+        scaleValue.textContent = value;
+      });
+
+      frequencySlider.addEventListener("input", (e) => {
+        const value = e.target.value;
+        turbulence.setAttribute("baseFrequency", `${value} ${value}`);
+        frequencyValue.textContent = value;
+      });
+
+      octavesSlider.addEventListener("input", (e) => {
+        const value = e.target.value;
+        turbulence.setAttribute("numOctaves", value);
+        octavesValue.textContent = value;
+      });
+
+      // 初始化
+      setProgress(50);
+    </script>
+  </body>
+</html>
