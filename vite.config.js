@@ -63,14 +63,14 @@ export default defineConfig({
       input: {
         // 主页
         main: resolve(__dirname, "index.html"),
-        // 404页面
-        404: resolve(__dirname, "src/404.html"),
-        // 1024页面
-        1024: resolve(__dirname, "src/pages/1024/index.html"),
-        // love页面
-        love: resolve(__dirname, "src/pages/love/index.html"),
-        // filter页面
-        filter: resolve(__dirname, "src/pages/filter/index.html"),
+        // // 404页面
+        // 404: resolve(__dirname, "src/404.html"),
+        // // 1024页面
+        // 1024: resolve(__dirname, "src/pages/1024/index.html"),
+        // // love页面
+        // love: resolve(__dirname, "src/pages/love/index.html"),
+        // // filter页面
+        // filter: resolve(__dirname, "src/pages/filter/index.html"),
       },
     },
   },
