@@ -1,5 +1,5 @@
-import { init } from "./assets/js/index.js";
+import { init } from "@js/index.js";
 // 引入unocss
-// import "uno.css";
+import "uno.css";
 
 init();
