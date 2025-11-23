@@ -59,7 +59,7 @@ export function getOffsetPath(angle, offsetX = 0, screenData = {}) {
   const svgISize = svgI.getBoundingClientRect();
 
   // 计算开始位置
-  const begin = getXYByY(screenHeight, angle, screenData);
+  const begin = getXYByY(screenHeight + svgISize.height, angle, screenData);
   // 计算直线终点
   const lineEnd = getXYByY(centerY - svgISize.height * 2, angle, screenData);
   // 计算曲线控制点1
