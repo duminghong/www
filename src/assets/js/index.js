@@ -88,5 +88,9 @@ export const init = () => {
   setTimeout(() => {
     app.classList.remove("active");
     svgBox.classList.add("show");
+
+    svg.appendChild(svgPath);
+
+    document.body.appendChild(svg);
   }, ANIMATION_CONFIG.SVG_BOX_ANIMATION_DELAY);
 };

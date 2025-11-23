@@ -51,6 +51,8 @@ export function getXYByY(y, angle, screenData = {}) {
 export function getOffsetPath(angle, offsetX = 0, screenData = {}) {
   // 优先使用外部传入的屏幕数据，避免重复查询 DOM
   const screenHeight = screenData.screenHeight || window.innerHeight;
+  const centerX =
+    screenData.centerX !== undefined ? screenData.centerX : screenWidth / 2;
   const centerY =
     screenData.centerY !== undefined ? screenData.centerY : screenHeight / 2;
   const svgI = screenData.svgI || document.querySelector(".svg-box .letter-i");
@@ -61,13 +63,27 @@ export function getOffsetPath(angle, offsetX = 0, screenData = {}) {
   // 计算直线终点
   const lineEnd = getXYByY(centerY - svgISize.height * 2, angle, screenData);
   // 计算曲线控制点1
-  const turn1 = { x: lineEnd.x * 1.7, y: -150 };
+  const turn1 = { x: lineEnd.x + centerX / 4, y: 0 };
   // 计算曲线控制点2
-  const turn2 = { x: svgISize.left - 20, y: centerY / 10 };
+  const turn2 = { x: svgISize.left - svgISize.width, y: 0 };
   // 计算曲线终点
   const turn = { x: svgISize.left, y: centerY - svgISize.height };
   // 计算终点
   const end = { x: svgISize.left, y: svgISize.top };
+
+  // 把每个点在页面显示出来
+  // const points = [begin, lineEnd, turn1, turn2, turn, end];
+  // points.forEach((point) => {
+  //   const div = document.createElement("div");
+  //   div.style.position = "absolute";
+  //   div.style.left = `${point.x}px`;
+  //   div.style.top = `${point.y}px`;
+  //   div.style.width = "10px";
+  //   div.style.height = "10px";
+  //   div.style.backgroundColor = "red";
+  //   div.style.borderRadius = "50%";
+  //   document.body.appendChild(div);
+  // });
 
   return `
     M${begin.x + offsetX} ${begin.y} 
