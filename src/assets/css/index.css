@@ -137,7 +137,7 @@
   transition: all 0.5s;
 }
 .svg-box.show {
-  transition: opacity background-color 0.7s, border 0.5s 0.5s;
+  transition: opacity 0.7s, background-color 1s 1s, border 0.5s 0.5s;
   opacity: 1;
   border-color: #e70217;
   background-color: #fff;
