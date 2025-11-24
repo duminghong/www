@@ -1,4 +1,4 @@
-import { getOffsetPath } from "../../utils/index.js";
+import { getOffsetPath, animateElementSize } from "../../utils/index.js";
 
 // 定义动画配置常量
 const ANIMATION_CONFIG = {
@@ -13,6 +13,7 @@ export const init = () => {
 
   // 获取主要DOM元素，缓存引用减少DOM查询
   const app = document.querySelector("#app");
+  const pageShadow = document.querySelector("#pageShadow");
   const svgBox = document.querySelector(".svg-box");
   const svgI = document.querySelector(".svg-box .letter-i");
   const pageKnife = document.querySelector("#pageKnife");
@@ -43,11 +44,50 @@ export const init = () => {
 
   // 设置初始状态的立方体
   pageCube.classList.add("shrink");
-  pageCube.style.cssText = `
-    width: ${cubeHeight}px;
-    height: ${cubeHeight}px;
-  `;
   pageCube.classList.add("active");
+
+  // 设置尺寸
+  // pageCube.style.cssText = `
+  //   width: ${cubeHeight}px;
+  //   height: ${cubeHeight}px;
+  // `;
+  // 进度点配置和跟踪
+  const progressPoints = [0.1, 0.3, 0.5, 0.7, 0.9];
+  const executedPoints = new Set();
+
+  // 通用处理函数，用于创建和添加shadow元素
+  const handleProgress = (width, height, progress) => {
+    console.log(`进度${progress}%时，立方体尺寸变化完成`, width, height);
+    const div = document.createElement("div");
+    div.classList.add("shadow");
+    div.style.width = `${width}px`;
+    div.style.height = `${height}px`;
+    pageShadow.appendChild(div);
+  };
+
+  animateElementSize({
+    element: pageCube,
+    initSize: {
+      width: screenWidth,
+      height: screenHeight,
+    },
+    targetSize: {
+      width: cubeHeight,
+      height: cubeHeight,
+    },
+    duration: 500,
+    onProgress: ({ progress, currentWidth, currentHeight }) => {
+      console.log("进度:", progress, "当前尺寸:", currentWidth, currentHeight);
+
+      // 检查并执行每个进度点（只执行一次）
+      progressPoints.forEach((point) => {
+        if (progress >= point && !executedPoints.has(point)) {
+          executedPoints.add(point);
+          handleProgress(currentWidth, currentHeight, point * 100);
+        }
+      });
+    },
+  });
 
   // 计算路径
   const path = getOffsetPath(
@@ -88,9 +128,5 @@ export const init = () => {
   setTimeout(() => {
     app.classList.remove("active");
     svgBox.classList.add("show");
-
-    svg.appendChild(svgPath);
-
-    document.body.appendChild(svg);
   }, ANIMATION_CONFIG.SVG_BOX_ANIMATION_DELAY);
 };

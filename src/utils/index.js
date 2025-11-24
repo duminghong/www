@@ -92,3 +92,51 @@ export function getOffsetPath(angle, offsetX = 0, screenData = {}) {
     L${end.x} ${end.y + svgISize.height / 2}
   `.replace(/\n+/g, "");
 }
+
+/**
+ * 动画元素尺寸变化
+ * @param {Object} params - 动画参数
+ * @param {Element} params.element - 要动画的元素
+ * @param {Object} [params.initSize={}] - 初始尺寸 {width, height}
+ * @param {Object} [params.targetSize={}] - 目标尺寸 {width, height}
+ * @param {number} [params.duration=1000] - 动画持续时间（毫秒）
+ * @param {Function} [params.onProgress=()=>{}] - 进度回调函数，参数为 {progress, currentWidth, currentHeight}
+ */
+export function animateElementSize({
+  element,
+  initSize = {},
+  targetSize = {},
+  duration = 1000,
+  onProgress = () => {},
+}) {
+  const initWidth = initSize.width || element.clientWidth;
+  const initHeight = initSize.height || element.clientHeight;
+  const startTime = performance.now();
+
+  const animate = (currentTime) => {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1); // 0到1之间的进度值
+
+    // 线性插值计算当前尺寸
+    const currentWidth = initWidth + (targetSize.width - initWidth) * progress;
+    const currentHeight =
+      initHeight + (targetSize.height - initHeight) * progress;
+
+    element.style.cssText = `
+        width: ${currentWidth}px;
+        height: ${currentHeight}px;
+      `;
+
+    if (progress < 1) {
+      requestAnimationFrame(animate);
+    }
+    onProgress &&
+      onProgress({
+        progress,
+        currentWidth,
+        currentHeight,
+      });
+  };
+
+  requestAnimationFrame(animate);
+}
