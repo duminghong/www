@@ -47,7 +47,6 @@
   width: 100%;
   height: 100%;
   background-color: #e70217;
-  transition: all 0.15s 0.5s;
 }
 .page-cube-angle {
   box-sizing: border-box;
@@ -71,6 +70,7 @@
   clip-path: polygon(100% 0, 100% 100%, 0% 100%);
 }
 .page-cube.active .page-cube-bg {
+  transition: all 0.15s 0.5s;
   height: 0;
 }
 .page-cube.show {
