@@ -75,7 +75,7 @@
   transition: all 0.1s;
 }
 .page-cube.show .page-cube-angle {
-  transition: border 0.2s;
+  transition: border 0.3s;
   border: 0.4vw solid #e70217;
   background-color: transparent;
 }

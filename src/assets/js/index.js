@@ -155,7 +155,7 @@ export const beginAnimation = () => {
     svgBox.classList.add("show");
   }, ANIMATION_CONFIG.SVG_BOX_ANIMATION_DELAY);
 
-  // SVG盒显示动画
+  // 动画结束
   setTimeout(() => {
     app.classList.add("animation-end");
   }, ANIMATION_CONFIG.ANIMATION_END_DELAY);
