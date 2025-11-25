@@ -2,8 +2,8 @@ import { getOffsetPath, animateElementSize } from "../../utils/index.js";
 
 // 定义动画配置常量
 const ANIMATION_CONFIG = {
-  CUBE_ANIMATION_DELAY: 750,
-  SVG_BOX_ANIMATION_DELAY: 850,
+  CUBE_ANIMATION_DELAY: 700,
+  SVG_BOX_ANIMATION_DELAY: 800,
   ANIMATION_END_DELAY: 1500,
   KNIFE_ANGLE: 45,
   CUBE_SCALE_FACTOR: 2,
@@ -67,7 +67,6 @@ export const beginAnimation = () => {
 
   // 设置初始状态的立方体
   setTimeout(() => {
-    pageCube.classList.add("shrink");
     pageCube.classList.add("active");
   }, 0);
 
@@ -136,30 +135,28 @@ export const beginAnimation = () => {
   // 立方体展开动画
   setTimeout(() => {
     app.classList.add("active");
-    pageCube.classList.remove("shrink");
+    // 为所有立方体添加样式
+    pageCubeAngle.forEach((item) => {
+      item.style.cssText = `
+        clip-path: polygon(0 0, ${cubeHeight}px 0, 0 ${cubeHeight}px);
+      `;
+    });
+
     pageCube.classList.add("show");
     pageCube.style.cssText = `
       width: ${svgBoxWidth}px;
       height: ${svgBoxHeight}px;
     `;
-
-    // 为所有立方体添加样式
-    pageCubeAngle.forEach((item) => {
-      item.style.cssText = `
-        width: ${cubeHeight}px;
-        height: ${cubeHeight}px;
-      `;
-    });
   }, ANIMATION_CONFIG.CUBE_ANIMATION_DELAY);
 
   // SVG盒显示动画
   setTimeout(() => {
-    app.classList.remove("active");
     svgBox.classList.add("show");
   }, ANIMATION_CONFIG.SVG_BOX_ANIMATION_DELAY);
 
   // 动画结束
   setTimeout(() => {
+    app.classList.remove("active");
     app.classList.add("animation-end");
   }, ANIMATION_CONFIG.ANIMATION_END_DELAY);
 };
