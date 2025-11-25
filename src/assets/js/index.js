@@ -19,21 +19,11 @@ export const pageCubeAngle = document.querySelectorAll(
   "#pageCube .page-cube-angle"
 );
 
-// 获取屏幕和元素尺寸，避免重复计算
-const screenWidth = window.innerWidth;
-const screenHeight = window.innerHeight;
-const centerX = screenWidth / 2;
-const centerY = screenHeight / 2;
-const svgBoxSize = svgBox.getBoundingClientRect();
-const svgISize = svgI.getBoundingClientRect();
-const { width: svgBoxWidth, height: svgBoxHeight } = svgBoxSize;
-
-// 立方体尺寸计算
-const cubeWidth = svgBoxWidth / ANIMATION_CONFIG.CUBE_SCALE_FACTOR;
-const cubeHeight = svgBoxHeight / ANIMATION_CONFIG.CUBE_SCALE_FACTOR;
-
 export const init = () => {
   console.log("init");
+  // 获取屏幕和元素尺寸，避免重复计算
+  const screenWidth = window.innerWidth;
+  const screenHeight = window.innerHeight;
   // 初始化页面元素状态
   app.classList.remove("animation-end");
   // 重置立方体样式和类
@@ -61,6 +51,19 @@ export const beginAnimation = () => {
   console.log("beginAnimation");
   // 动画开始前先初始化到最开始状态
   init();
+
+  // 获取屏幕和元素尺寸，避免重复计算
+  const screenWidth = window.innerWidth;
+  const screenHeight = window.innerHeight;
+  const centerX = screenWidth / 2;
+  const centerY = screenHeight / 2;
+  const svgBoxSize = svgBox.getBoundingClientRect();
+  const svgISize = svgI.getBoundingClientRect();
+  const { width: svgBoxWidth, height: svgBoxHeight } = svgBoxSize;
+
+  // 立方体尺寸计算
+  const cubeWidth = svgBoxWidth / ANIMATION_CONFIG.CUBE_SCALE_FACTOR;
+  const cubeHeight = svgBoxHeight / ANIMATION_CONFIG.CUBE_SCALE_FACTOR;
 
   // 设置初始状态的立方体
   setTimeout(() => {

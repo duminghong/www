@@ -1,4 +1,5 @@
 import { app, beginAnimation } from "@js/index.js";
+import { debounce } from "@utils/index.js";
 // 引入unocss
 import "uno.css";
 
@@ -11,3 +12,8 @@ document.addEventListener("click", () => {
     beginAnimation();
   }
 });
+
+// 窗口变化事件
+window.onresize = debounce(() => {
+  beginAnimation();
+}, 200);
