@@ -77,7 +77,7 @@ export const beginAnimation = () => {
 
   // 通用处理函数，用于创建和添加shadow元素
   const handleProgress = (width, height, progress) => {
-    console.log(`进度${progress}%时，立方体尺寸变化完成`, width, height);
+    // console.log(`进度${progress}%时，立方体尺寸变化完成`, width, height);
     const div = document.createElement("div");
     div.classList.add("shadow");
     div.style.width = `${width}px`;
@@ -97,7 +97,7 @@ export const beginAnimation = () => {
     },
     duration: 500,
     onProgress: ({ progress, currentWidth, currentHeight }) => {
-      console.log("进度:", progress, "当前尺寸:", currentWidth, currentHeight);
+      // console.log("进度:", progress, "当前尺寸:", currentWidth, currentHeight);
 
       // 检查并执行每个进度点（只执行一次）
       progressPoints.forEach((point) => {
@@ -123,7 +123,7 @@ export const beginAnimation = () => {
     svgISize.width / 2,
     screenData
   );
-  console.log("路径:", path);
+  // console.log("路径:", path);
 
   // 设置页面刀片和路径
   pageKnife.style.cssText = `
